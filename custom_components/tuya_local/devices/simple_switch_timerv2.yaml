@@ -1,7 +1,5 @@
 name: Simple switch with timer
 products:
-  - id: eetmtcempdyxgpx5
-    name: Nexxt 220v smartplug
   - id: 45gg9a0jfyzj1z1d
     name: Mini smart switch
 primary_entity:
