@@ -49,6 +49,14 @@ primary_entity:
       name: fan_mode
       type: string
       mapping:
+        - dps_val: "0"
+          value: auto
+          constraint: mode
+          conditions:
+            - dps_val: "2"
+              invalid: true
+            - dps_val: "4"
+              invalid: true
         - dps_val: "1"
           constraint: hvac_mode
           conditions:
