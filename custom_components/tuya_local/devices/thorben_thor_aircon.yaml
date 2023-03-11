@@ -1,0 +1,145 @@
+name: Thörben Thör air conditioner
+products:
+  - id: jsf9spFEoWRFozCC
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      name: hvac_mode
+      type: boolean
+      mapping:
+        - dps_val: false
+          value: "off"
+          icon: "mdi:hvac-off"
+        - dps_val: true
+          constraint: mode
+          conditions:
+            - dps_val: "1"
+              value: heat
+              icon: "mdi:fire"
+            - dps_val: "2"
+              value: dry
+              icon: "mdi:water"
+            - dps_val: "3"
+              value: cool
+              icon: "mdi:snowflake"
+            - dps_val: "4"
+              value: fan_only
+              icon: "mdi:fan"
+    - id: 4
+      name: timer_switch
+      type: integer
+    - id: 5
+      name: mode
+      type: string
+      hidden: true
+    - id: 6
+      name: temperature
+      type: integer
+      range:
+        min: 13
+        max: 32
+      mapping:
+        - scale: 1
+          constraint: temperature_unit
+          conditions:
+            - dps_val: true
+              value_redirect: temp_set_f
+    - id: 8
+      name: fan_mode
+      type: string
+      mapping:
+        - dps_val: "1"
+          constraint: hvac_mode
+          conditions:
+            - dps_val: false
+              value: "off"
+            - dps_val: true
+              value: low
+        - dps_val: "2"
+          constraint: hvac_mode
+          conditions:
+            - dps_val: false
+              value: "off"
+            - dps_val: true
+              value: medium
+        - dps_val: "3"
+          constraint: hvac_mode
+          conditions:
+            - dps_val: false
+              value: "off"
+            - dps_val: true
+              value: high
+    - id: 10
+      name: temperature_unit
+      type: boolean
+      mapping:
+        - dps_val: true
+          value: F
+        - dps_val: false
+          value: C
+    - id: 13
+      name: timer
+      type: integer
+    - id: 14
+      name: unknown_14
+      type: integer
+    - id: 15
+      name: unknown_15
+      type: integer
+    - id: 16
+      name: swing_mode
+      type: boolean
+      mapping:
+        - dps_val: false
+          constraint: hvac_mode
+          value: "off"
+        - dps_val: true
+          value: vertical
+    - id: 17
+      name: sleep_mode
+      type: boolean
+    - id: 18
+      name: temp_set_f
+      type: integer
+      hidden: true
+    - id: 19
+      type: boolean
+      name: unknown_19
+secondary_entities:
+  - entity: select
+    category: config
+    name: Temperature unit
+    icon: "mdi:temperature-celsius"
+    dps:
+      - id: 10
+        name: option
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: Celsius
+          - dps_val: true
+            value: Fahrenheit
+  - entity: switch
+    name: Sleep mode
+    category: config
+    icon: "mdi:power-sleep"
+    dps:
+      - id: 17
+        type: boolean
+        name: switch
+  - entity: number
+    name: Timer
+    category: config
+    icon: "mdi:timer-cog"
+    dps:
+      - id: 13
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 1440
+        mapping:
+          - scale: 60
+            step: 60
