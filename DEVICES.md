@@ -13,6 +13,7 @@
 - Eurom Sani Wall Heat 2000 heater
 - Eurom Wall Designheat 2000 heater
 - Goldair heater models beginning with the code GPPH, GCPV, GECO
+- Heatstorm HS-6000-GC heavy duty heater
 - HJZ oil column radiator
 - INOW Wi-Fi heating element
 - Kogan flame effect heater - KAWHMFP20BA model
@@ -148,6 +149,7 @@
 - JJPro JPD02 dehumidifier
 - Klarstein DryFy Pro Connect dehumidifier
 - Kogan SmarterHome 7L desiccant dehumidifier
+- Shinco 30D dehumidifier
 
 ### Humidifiers
 
@@ -301,6 +303,10 @@ of device.
 ### Sirens
 
 - Orion Grid Connect outdoor siren
+
+### Doorbells
+
+- WHM-04 doorbell (sold under various brands)
 
 ### Cameras
 
