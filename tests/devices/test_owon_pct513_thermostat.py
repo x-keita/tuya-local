@@ -4,7 +4,7 @@ from homeassistant.components.climate.const import (
     HVACMode,
 )
 
-from homeassistant.const import UnitOfTemperature
+from homeassistant.const import PRECISION_TENTHS, UnitOfTemperature
 
 from ..const import OWON_PCT513_THERMOSTAT_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -78,6 +78,9 @@ class TestOwonPCT513Thermostat(
         self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.CELSIUS)
         self.dps[UNIT_DPS] = "f"
         self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.FAHRENHEIT)
+
+    def test_precision(self):
+        self.assertEqual(self.subject.precision, PRECISION_TENTHS)
 
     def test_current_temperature(self):
         self.dps[UNIT_DPS] = "c"

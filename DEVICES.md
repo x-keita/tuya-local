@@ -3,6 +3,7 @@
 ### Heaters
 
 - Andersson GSH heater
+- Arlec 2200W and 2400W panel heaters
 - Atomi AT1632 ceramic heater
 - Betterlife BT1500 IR heater
 - BVF CP1 heater
@@ -21,7 +22,9 @@
 - Kogan Wi-Fi convection panel heaters - KAHTP and KAWFHTP models
 - Nedis convection heater - WIFIHTPL20F model
 - Orion OWH-PTC2000 heater
+- Princess 350 panel heater
 - Purline Hoti M100 heater
+- Rumba bathroom heater
 - Wetair WCH-750 heater
 
 ### Air Conditioners / Heatpumps
@@ -76,6 +79,7 @@
 - Beok TGR81 thermostat (also reported working with Myuet ME98, Avatto WT81/ME81)
 - Beok TOL47 thermostat
 - Beok TR9B thermostat _(rebadged as Vancoo and perhaps others)_
+- BHT-002-GALW thermostat _(rebadged as many different brands)_
 - ETOP-HP thermostat (CH7100)
 - ETOP-HT thermostat
 - Hysen HY08ACF thermostat
@@ -124,6 +128,7 @@
 - essentials portable air purifier
 - Himox H05 and H06 air purifiers
 - Hosome air purifier
+- Lifubide X600 air purifier
 - Poiema One air purifier
 - Renpho RP-AP001S air purifier
 - Stadler Form Roger air purifier
@@ -173,16 +178,17 @@
 
 - Asakuki aroma diffuser with light
 - Etersky aroma diffuser with light
-- YYM-805SW aroma diffuser with light
+- YYM-805SW aroma diffuser with light (also supports GX Aroma diffuser)
 
 ### Kitchen Appliances
 
 - Anko 1.7L smart kettle
 - Setti+ KT950W smart kettle
 - Inkbird iBBQ-4BW cooking probe thermometer
-- Inkbird sous vide cooker
+- Inkbird sous vide cooker (also supports Silvercrest sous vide sticks)
 - Kogan glass 1.7L smart kettle
 - Silvercrest 1.7L smart kettle
+- Ultenic K10 air fryer
 
 ### Smart Meter/Circuit Breaker
 
@@ -192,7 +198,9 @@
 - PJ-1103 power clamp meter
 - SG600MD Smart Solar Inverter (also SG700MD, other SGxx0MD and SGxx0W models) sold under various brands
 - SmartMCB SMT006 energy meter
+- Taxnele circuit breaker and energy meter
 - TOMPD-63LW energy meter circuit breaker
+- WDYK 3 phase 4 pole 400V energy meter circuit breaker
 
 ### Battery Charger
 
@@ -214,6 +222,7 @@ the best option.
 - Aubess 1-gang switch with energy monitoring
 - Aubess 2-gang switch
 - Blitzwolf BW-SHP6 PRO smartplug with child lock
+- CBI Astute smart controller
 - DIGOO DG-SP202 dual smartplug with energy monitoring and timers
 - DIGOO DG-SP01 USB smartplug with night light
 - Dual power monitoring smartplug (Geex)
@@ -224,6 +233,7 @@ the best option.
 - Grid Connect double outlet with Energy Monitoring, Master and Individual switches and Child Lock
 - Grid Connect USB charger with power socket
 - Logicom Strippy 4 way power strip with USB
+- Loratap RR400W-V2 relay switch
 - Mirabella Genio smartplug with USB
 - MoesHouse smartplug with RGBW nightlight
 - Qnect QN-WPO3 3 outlet + USB powerstrip with individual timers
@@ -244,7 +254,7 @@ of device.
 - 4 way powerstrip with USB
   _confirmed as working with AOFO ZLD-44EU-W_
 - Generic smartplug with power monitoring (older models)
-  _confirmed as working with Kogan and Blitzwolf single smartplugs (smartplugv1)_
+  _confirmed as working with Kogan, Blitzwolf and Gosund single smartplugs (smartplugv1)_
 - Generic smartplug with power monitoring (newer models)
   _confirmed as working with Kogan single smartplug with USB and Rillpac smartplugs (smartplugv2)_
 - Generic smartplug with power monitoring requiring polling of sensors
@@ -252,7 +262,7 @@ of device.
 - Generic smartplug with power monitoring and USB ports
   _confirmed as working with Gosund SP112 smartplugs_
 - Generic smartplug with more advanced energy monitoring
-  _confirmed working with CBE smartplugs, another variant with child lock, backlight and inching switch confirmed with Aubess and Elivco_
+  _confirmed working with CBE smartplugs, another variant with child lock, backlight and inching switch confirmed with Aubess and Elivco, and another variant with Gosund UP111-RTL_
 - Generic smartplug with some additional encoded schedule info.
   _confirmed working as a simple switch and timer with Kashimura KJ-173_
 - Generic double switch with timers (confirmed with Living dual switch and another v2 variant with Avatto dual switch)
@@ -267,7 +277,8 @@ of device.
 ### Lights
 
 - Generic dimmable light (2 types, using dp 1,2 and 20,22)
-- Generic RGBCW/RGBWW lightbulb (confirmed with Lijun branded bulb, expected to match others also). Two versions - with and without scene/music modes and timer.
+- Generic RGBCW/RGBWW lightbulb (confirmed with Lijun branded bulb, expected to match others also). Three versions - standard dps layout starting from 20, with and without scene/music modes and timer, and a non-standard layout starting from 1 but following the same pattern (tested with "A60" bulbs).
+- Generic dimmable/color temperature adjustable desktop lamp (confirmed with Setti+ SL601)
 - Atomi smart color string light
 - Deta/Arlec motion sensor lights (DET100HA/DET102HA/MAL315HA)
 - Deta 6910HA series2 dimmer switch
@@ -275,6 +286,7 @@ of device.
 - HDMI sync light
 - iHD001 LED controller
 - Moes dimmer switch
+- Moes motion sensor lights (XZ-CGV3)
 - Space Dog Music Lamp
 
 ### Covers
@@ -293,11 +305,14 @@ of device.
 - FS-03W curtain switch with backlight control
 - Kogan garage door with tilt sensor
 - Loonas smart curtain
+- LoraTap GDC100W garage door opener
 - LoraTap SC500W-V1 curtain switch
 - M027 curtain module (sold under several brands, including zemismart, meterk and others)
 - QS-WIFI-C01(BK) curtain module
+- SHerko curtain motor
 - Wistar roller blind controller
 - Zemismart curtain rail
+- Zemismart roller shade
 
 ### Vacuum Cleaners
 
@@ -305,6 +320,8 @@ of device.
 - Kyvol E30 vacuum cleaner
 - Lefant M213 vacuum cleaner (also works for Lefant M213S and APOSEN A550)
 - Lenovo E1 vacuum cleaner
+- Mellerware City Move vacuum cleaner (high likelihood of mismatch)
+- Rinkmo D2 vacuum cleaner
 
 ### Lawnmowers
 
@@ -329,16 +346,24 @@ of device.
 
 ### Miscellaneous
 
+- generic PIR motion sensor
 - Bresser smart 7-in-1 weather station
 - Catit Pixi smart fountain
-- Catit pet feeder (experimental)
+- Catit pet feeder (2.2kg dispenser and 6 meal versions)
 - Emax EM3378 Weather Station (selling as Hiper P1 and other rebrands)
+- Inkbird PTH-9CW air quality monitor
+- KKMoon 7in1 air quality monitor
+- Kogan bidet toilet seat
 - Konlen/Rockson WF96L water level controller
 - Nedis pet feeder
 - Nedis WIFISA10CWT air quality monitor
 - PGST PA-010 indoor temperature and humidity sensor
+- PH-W218 water quality monitor
+- Rojeco PTM-001 pet feeder
 - Qoto 03 smart water valve / sprinkler controller
 - SD123 HPR01 human presence radar
+- SH07-8 smart sprinkler controller
 - Universal remote control (supports sensors only)
-- Yieryi pH meter (also matches unbranded pH-W3988 device)
+- Yieryi water quality monitor (also matches unbranded PH-W3988 device)
 - ZX-G30 alarm system (not as an alarm_control_panel, as individual inputs and sensors)
+- ZY-M100-WiFi mmWave human presence sensor

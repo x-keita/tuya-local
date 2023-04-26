@@ -60,10 +60,6 @@ class TestSmartMcbSMT006EnergyMeter(
                     "name": "switch_prepay",
                     "dps": PREPAY_DPS,
                 },
-                {
-                    "name": "switch_energy_reset",
-                    "dps": RESET_DPS,
-                },
             ],
         )
         self.setUpMultiSensors(
@@ -212,7 +208,9 @@ class TestSmartMcbSMT006EnergyMeter(
                 "binary_sensor_undervoltage",
                 "button_energy_reset",
                 "sensor_balance_energy",
-                "switch_energy_reset",
+                "sensor_current_a",
+                "sensor_power_a",
+                "sensor_voltage_a",
                 "switch_prepay",
             ]
         )

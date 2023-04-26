@@ -26,6 +26,8 @@ from homeassistant.components.climate.const import (
 )
 from homeassistant.const import (
     ATTR_TEMPERATURE,
+    PRECISION_TENTHS,
+    PRECISION_WHOLE,
     UnitOfTemperature,
 )
 import logging
@@ -132,19 +134,16 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
         """Return the precision of the temperature setting."""
         # unlike sensor, this is a decimal of the smallest unit that can be
         # represented, not a number of decimal places.
-        temp = (
-            self._temperature_dps.scale(self._device)
-            if self._temperature_dps
-            else self._temp_high_dps.scale(self._device)
-            if self._temp_high_dps
-            else 1
-        )
+        dp = self._temperature_dps or self._temp_high_dps
+        temp = dp.scale(self._device) if dp else 1
         current = (
             self._current_temperature_dps.scale(self._device)
             if self._current_temperature_dps
             else 1
         )
-        return 1.0 / max(temp, current)
+        if max(temp, current) > 1.0:
+            return PRECISION_TENTHS
+        return PRECISION_WHOLE
 
     @property
     def target_temperature(self):
@@ -286,7 +285,7 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
             return None
         action = self._hvac_action_dps.get_value(self._device)
         try:
-            return HVACAction(action)
+            return HVACAction(action) if action else None
         except ValueError:
             _LOGGER.warning(f"_Unrecognised HVAC Action {action} ignored")
             return None
@@ -298,7 +297,7 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
             return HVACMode.AUTO
         hvac_mode = self._hvac_mode_dps.get_value(self._device)
         try:
-            return HVACMode(hvac_mode)
+            return HVACMode(hvac_mode) if hvac_mode else None
         except ValueError:
             _LOGGER.warning(f"Unrecognised HVAC Mode of {hvac_mode} ignored")
             return None
