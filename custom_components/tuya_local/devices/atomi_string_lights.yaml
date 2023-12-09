@@ -12,7 +12,7 @@ primary_entity:
         - dps_val: white
           value: color_temp
         - dps_val: colour
-          value: rgbw
+          value: hs
         - dps_val: scene1
           value: Strobe
         - dps_val: scene2
@@ -44,7 +44,9 @@ primary_entity:
         min: 0
         max: 255
       mapping:
-        - invert: true
+        - target_range:
+            min: 2700
+            max: 6500
     - id: 24
       name: rgbhsv
       type: hex

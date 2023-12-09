@@ -1,9 +1,8 @@
 name: PJ-1103 clamp power meter
-product:
+products:
   - id: djfep9s6s3b2qk89
 primary_entity:
   entity: sensor
-  name: Power
   class: power
   dps:
     - id: 19
@@ -28,22 +27,22 @@ primary_entity:
       optional: true
 secondary_entities:
   - entity: sensor
-    name: Current
     class: current
     category: diagnostic
     dps:
       - id: 18
         type: integer
         name: sensor
-        unit: mA
+        unit: A
         force: true
         class: measurement
+        mapping:
+          - scale: 1000
       - id: 23
         type: integer
         name: calibration
         optional: true
   - entity: sensor
-    name: Voltage
     class: voltage
     category: diagnostic
     dps:

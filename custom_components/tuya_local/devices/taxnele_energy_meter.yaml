@@ -3,7 +3,6 @@ products:
   - id: 3xhdofmeo6lgpvd5
 primary_entity:
   entity: sensor
-  name: Energy
   class: energy
   dps:
     - id: 1
@@ -64,8 +63,10 @@ secondary_entities:
       - id: 15
         type: integer
         name: sensor
-        unit: mA
+        unit: A
         class: measurement
+        mapping:
+          - scale: 1000
   - entity: switch
     name: Circuit breaker
     icon: "mdi:fuse"
@@ -75,7 +76,6 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: sensor
-    name: Temperature
     class: temperature
     category: diagnostic
     dps:
@@ -84,8 +84,3 @@ secondary_entities:
         name: sensor
         unit: C
         class: measurement
-
-
-
-
-
