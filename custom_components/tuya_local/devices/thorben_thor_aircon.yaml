@@ -12,7 +12,7 @@ primary_entity:
           value: "off"
           icon: "mdi:hvac-off"
         - dps_val: true
-          constraint: mode
+          constraint: hvac_action
           conditions:
             - dps_val: "1"
               value: heat
@@ -30,9 +30,20 @@ primary_entity:
       name: timer_switch
       type: integer
     - id: 5
-      name: mode
+      name: hvac_action
       type: string
       hidden: true
+      mapping:
+        - dps_val: "0"
+          value: off
+        - dps_val: "1"
+          value: heating
+        - dps_val: "2"
+          value: drying
+        - dps_val: "3"
+          value: cooling
+        - dps_val: "4"
+          value: fan
     - id: 6
       name: temperature
       type: integer
@@ -111,6 +122,7 @@ primary_entity:
       name: temp_set_f
       type: integer
       hidden: true
+      optional: true
     - id: 19
       type: boolean
       name: unknown_19
