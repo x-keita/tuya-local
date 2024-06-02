@@ -1,4 +1,5 @@
 """Tests for the water heater entity."""
+
 from unittest.mock import AsyncMock, Mock
 
 import pytest
@@ -22,7 +23,7 @@ async def test_init_entry(hass):
     entry = MockConfigEntry(
         domain=DOMAIN,
         data={
-            CONF_TYPE: "hydrotherm_dynamic_x8_water_heater",
+            CONF_TYPE: "geyserwise_water_heater",
             CONF_DEVICE_ID: "dummy",
             CONF_PROTOCOL_VERSION: "auto",
         },

@@ -4,8 +4,7 @@ products:
     name: Fisher Summer Air Conditioner
 primary_entity:
   entity: climate
-  icon: "mdi:air-conditioner"
-  translation_key: aircon_extra
+  translation_only_key: aircon_extra
   dps:
     - id: 1
       name: hvac_mode
@@ -13,25 +12,19 @@ primary_entity:
       mapping:
         - dps_val: false
           value: "off"
-          icon: "mdi:hvac-off"
         - dps_val: true
           constraint: mode
           conditions:
             - dps_val: auto
-              icon: mdi:thermostat-auto
               value: heat_cool
             - dps_val: cold
-              icon: "mdi:snowflake"
               value: cool
             - dps_val: wind
-              icon: "mdi:fan"
               value: fan_only
             - dps_val: wet
-              icon: "mdi:water"
               value: dry
             - dps_val: hot
               value: heat
-              icon: "mdi:heat-wave"
     - id: 2
       name: temperature
       type: integer
@@ -39,8 +32,8 @@ primary_entity:
         min: 160
         max: 310
       mapping:
-        - scale: 10  
-          step: 5 
+        - scale: 10
+          step: 5
       unit: C
     - id: 3
       name: current_temperature
@@ -78,7 +71,7 @@ primary_entity:
     - id: 110
       name: functions_available
       type: bitfield
-      # Used to indicate whether this function is available. 
+      # Used to indicate whether this function is available.
       #   0. Whether the temperature is adjustable in dehumidification mode
       #   1. Whether the temperature is adjustable in air supply mode
       #   2. Whether the temperature is adjustable in automatic mode
@@ -92,10 +85,11 @@ primary_entity:
       #   10. Save money and see it
       #   11. Power statistics
       #   12. Generator mode
-      #   13. High temperature wind/cool wind 
+      #   13. High temperature wind/cool wind
       #   14. Air quality detection function
       #   15. Set to empty (original: humidity function)
-      #   16. Set to empty (original: equipment operation saves money and visible temperature curve display)
+      #   16. Set to empty (original: equipment operation saves money and
+      #       visible temperature curve display)
       #   17. 8℃ heating
       #   18. Filter dirty and clogged function
       #   ??? - 19 is missing in Tuya json
@@ -108,7 +102,6 @@ primary_entity:
       type: string
 secondary_entities:
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:
@@ -134,8 +127,8 @@ secondary_entities:
         name: option
         type: string
         mapping:
-          - dps_val: off
-            value: Off
+          - dps_val: "off"
+            value: "Off"
             default: true
           - dps_val: normal
             value: Normal
@@ -170,7 +163,7 @@ secondary_entities:
         type: string
         mapping:
           - dps_val: 0
-            value: None
+            value: "Off"
             default: true
           - dps_val: 1
             value: Left and Right
@@ -212,7 +205,7 @@ secondary_entities:
         name: option
         type: string
         mapping:
-          - dps_val: off
+          - dps_val: "off"
             value: None
             default: true
           - dps_val: L1
@@ -230,7 +223,7 @@ secondary_entities:
         type: string
         optional: true
   - entity: select
-    name: Set Vertical Direction # Tuya JSON phrasing: Freeze Vertical
+    name: Set Vertical Direction
     category: config
     dps:
       - id: 126
@@ -249,9 +242,9 @@ secondary_entities:
           - dps_val: 4
             value: Slightly Down
           - dps_val: 5
-            value: Down  
+            value: Down
   - entity: select
-    name: Set Horizontal Direction # Tuya JSON phrasing: Freeze Horizontal
+    name: Set Horizontal Direction  # Tuya JSON phrasing: Freeze Horizontal
     category: config
     dps:
       - id: 127
@@ -270,7 +263,7 @@ secondary_entities:
           - dps_val: 4
             value: Slightly Right
           - dps_val: 5
-            value: Right  
+            value: Right
           - dps_val: 6
             value: Wide Angle Left
           - dps_val: 7
@@ -364,4 +357,4 @@ secondary_entities:
         name: sensor
         type: integer
         unit: s
-        optional: true 
+        optional: true

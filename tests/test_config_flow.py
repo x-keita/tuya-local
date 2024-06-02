@@ -1,9 +1,11 @@
 """Tests for the config flow."""
+
 from unittest.mock import ANY, AsyncMock, MagicMock, patch
 
 import pytest
 import voluptuous as vol
 from homeassistant.const import CONF_HOST, CONF_NAME
+from homeassistant.data_entry_flow import FlowResultType
 from pytest_homeassistant_custom_component.common import MockConfigEntry
 
 from custom_components.tuya_local import (
@@ -92,6 +94,7 @@ async def test_migrate_entry(mock_setup, hass):
             "display_light": True,
         },
     )
+    entry.add_to_hass(hass)
     assert await async_migrate_entry(hass, entry)
 
     mock_device.async_inferred_type = AsyncMock(return_value=None)
@@ -109,6 +112,7 @@ async def test_migrate_entry(mock_setup, hass):
             "climate": False,
         },
     )
+    entry.add_to_hass(hass)
     assert not await async_migrate_entry(hass, entry)
     mock_device.reset_mock()
 
@@ -126,6 +130,7 @@ async def test_migrate_entry(mock_setup, hass):
             "climate": False,
         },
     )
+    entry.add_to_hass(hass)
     assert not await async_migrate_entry(hass, entry)
 
     mock_device.async_inferred_type = AsyncMock(return_value="smartplugv1")
@@ -145,6 +150,7 @@ async def test_migrate_entry(mock_setup, hass):
             "switch": True,
         },
     )
+    entry.add_to_hass(hass)
     assert await async_migrate_entry(hass, entry)
 
     mock_device.async_inferred_type = AsyncMock(return_value="smartplugv2")
@@ -164,6 +170,7 @@ async def test_migrate_entry(mock_setup, hass):
             "switch": True,
         },
     )
+    entry.add_to_hass(hass)
     assert await async_migrate_entry(hass, entry)
 
     mock_device.async_inferred_type = AsyncMock(return_value="goldair_dehumidifier")
@@ -187,6 +194,7 @@ async def test_migrate_entry(mock_setup, hass):
             "switch": True,
         },
     )
+    entry.add_to_hass(hass)
     assert await async_migrate_entry(hass, entry)
 
     mock_device.async_inferred_type = AsyncMock(
@@ -210,14 +218,15 @@ async def test_migrate_entry(mock_setup, hass):
             "switch_right_outlet": True,
         },
     )
+    entry.add_to_hass(hass)
     assert await async_migrate_entry(hass, entry)
 
 
 @pytest.mark.asyncio
 async def test_flow_user_init(hass):
-    """Test the initialisation of the form in the first step of the config flow."""
+    """Test the initialisation of the form in the first page of the manual config flow path."""
     result = await hass.config_entries.flow.async_init(
-        DOMAIN, context={"source": "user"}
+        DOMAIN, context={"source": "local"}
     )
     expected = {
         "data_schema": ANY,
@@ -225,7 +234,7 @@ async def test_flow_user_init(hass):
         "errors": {},
         "flow_id": ANY,
         "handler": DOMAIN,
-        "step_id": "user",
+        "step_id": "local",
         "type": "form",
         "last_step": ANY,
         "preview": ANY,
@@ -252,6 +261,8 @@ async def test_async_test_connection_valid(mock_device, hass):
     """Test that device is returned when connection is valid."""
     mock_instance = AsyncMock()
     mock_instance.has_returned_state = True
+    mock_instance.pause = MagicMock()
+    mock_instance.resume = MagicMock()
     mock_device.return_value = mock_instance
     hass.data[DOMAIN] = {"deviceid": {"device": mock_instance}}
 
@@ -275,6 +286,8 @@ async def test_async_test_connection_for_subdevice_valid(mock_device, hass):
     """Test that subdevice is returned when connection is valid."""
     mock_instance = AsyncMock()
     mock_instance.has_returned_state = True
+    mock_instance.pause = MagicMock()
+    mock_instance.resume = MagicMock()
     mock_device.return_value = mock_instance
     hass.data[DOMAIN] = {"subdeviceid": {"device": mock_instance}}
 
@@ -317,7 +330,9 @@ async def test_async_test_connection_invalid(mock_device, hass):
 async def test_flow_user_init_invalid_config(mock_test, hass):
     """Test errors populated when config is invalid."""
     mock_test.return_value = None
-    flow = await hass.config_entries.flow.async_init(DOMAIN, context={"source": "user"})
+    flow = await hass.config_entries.flow.async_init(
+        DOMAIN, context={"source": "local"}
+    )
     result = await hass.config_entries.flow.async_configure(
         flow["flow_id"],
         user_input={
@@ -349,7 +364,9 @@ async def test_flow_user_init_data_valid(mock_test, hass):
     setup_device_mock(mock_device)
     mock_test.return_value = mock_device
 
-    flow = await hass.config_entries.flow.async_init(DOMAIN, context={"source": "user"})
+    flow = await hass.config_entries.flow.async_init(
+        DOMAIN, context={"source": "local"}
+    )
     result = await hass.config_entries.flow.async_configure(
         flow["flow_id"],
         user_input={
@@ -488,8 +505,9 @@ async def test_flow_choose_entities_creates_config_entry(hass, bypass_setup):
         )
         expected = {
             "version": 13,
+            "minor_version": ANY,
             "context": {"source": "choose_entities"},
-            "type": "create_entry",
+            "type": FlowResultType.CREATE_ENTRY,
             "flow_id": ANY,
             "handler": DOMAIN,
             "title": "test",
@@ -548,7 +566,7 @@ async def test_options_flow_init(hass):
 
 @pytest.mark.asyncio
 @patch("custom_components.tuya_local.config_flow.async_test_connection")
-async def test_options_flow_modifies_config(mock_test, hass):
+async def test_options_flow_modifies_config(mock_test, hass, bypass_setup):
     mock_device = MagicMock()
     mock_test.return_value = mock_device
 
@@ -684,4 +702,5 @@ async def test_async_setup_entry_for_switch(mock_device, hass):
             CONF_TYPE: "smartplugv2",
         },
     )
+    config_entry.add_to_hass(hass)
     assert await async_setup_entry(hass, config_entry)
