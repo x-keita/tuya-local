@@ -24,6 +24,8 @@ class TuyaLocalEntity:
         self._attr_translation_key = (
             config.translation_key or config.translation_only_key
         )
+        self._attr_translation_placeholders = config.translation_placeholders
+
         return {c.name: c for c in config.dps()}
 
     def _init_end(self, dps):
@@ -37,7 +39,7 @@ class TuyaLocalEntity:
 
     @property
     def available(self):
-        return self._device.has_returned_state
+        return self._device.has_returned_state and self._config.available(self._device)
 
     @property
     def has_entity_name(self):
@@ -99,7 +101,7 @@ class TuyaLocalEntity:
     @property
     def entity_registry_enabled_default(self):
         """Disable deprecated entities on new installations"""
-        return not self._config.deprecated
+        return not self._config.deprecated and self._config.available(self._device)
 
     async def async_update(self):
         await self._device.async_refresh()

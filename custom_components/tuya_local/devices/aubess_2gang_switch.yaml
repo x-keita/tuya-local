@@ -30,8 +30,9 @@ secondary_entities:
         name: switch
         type: boolean
   - entity: number
-    name: Timer 1
-    translation_key: timer
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
     category: config
     dps:
       - id: 9
@@ -44,9 +45,10 @@ secondary_entities:
           - scale: 60
             step: 60
   - entity: number
-    name: Timer 2
     category: config
-    translation_key: timer
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
     dps:
       - id: 10
         type: integer
@@ -58,20 +60,19 @@ secondary_entities:
           - scale: 60
             step: 60
   - entity: select
-    name: Restore power state
+    translation_key: initial_state
     category: config
-    icon: "mdi:toggle-switch"
     dps:
       - id: 38
         type: string
         name: option
         mapping:
           - dps_val: memory
-            value: Remember last state
+            value: memory
           - dps_val: "on"
-            value: "On"
+            value: "on"
           - dps_val: "off"
-            value: "Off"
+            value: "off"
   - entity: select
     name: Switch type
     icon: "mdi:toggle-switch"

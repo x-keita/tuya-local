@@ -9,6 +9,7 @@ primary_entity:
       type: string
       name: create_unlock_method
       optional: true
+      sensitive: true
     - id: 2
       type: string
       name: delete_unlock_method
@@ -17,6 +18,7 @@ primary_entity:
       type: string
       name: modify_unlock_method
       optional: true
+      sensitive: true
     - id: 12
       type: integer
       name: unlock_fingerprint
@@ -126,6 +128,7 @@ secondary_entities:
       - id: 26
         type: string
         name: option
+        optional: true
         mapping:
           - dps_val: 5s
             value: 5s
@@ -189,6 +192,7 @@ secondary_entities:
         name: sensor
         unit: "%"
         class: measurement
+        optional: true
         mapping:
           - dps_val: high
             value: 100
@@ -199,19 +203,19 @@ secondary_entities:
           - dps_val: poweroff
             value: 0
   - entity: select
-    name: Language
-    icon: "mdi:translate"
+    translation_key: language
     category: config
     dps:
       - id: 28
         type: string
         name: option
+        optional: true
         mapping:
           - dps_val: chinese_simplified
-            value: 中文
+            value: chinese
           - dps_val: english
-            value: English
+            value: english
           - dps_val: spanish
-            value: español
+            value: spanish
           - dps_val: Portuguese
-            value: Português
+            value: portuguese

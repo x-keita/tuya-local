@@ -1,7 +1,9 @@
-name: Tefal vacuum
+name: Robot vacuum
 products:
   - id: gahugwuufkhzie7v
-    name: Tefal X-plorer Serie 75 Animal
+    name: Tefal X-plorer S75 Animal
+  - id: tw2o6dntmqfpwsc7
+    name: Rowenta X-plorer S75
 primary_entity:
   entity: vacuum
   dps:
@@ -101,22 +103,6 @@ primary_entity:
       name: locate
       optional: true
       type: boolean
-    - id: 122
-      name: error
-      type: bitfield
-      mapping:
-        - dps_val: 2
-          value: Battery low
-        - dps_val: 32
-          value: Drop sensor abnormal
-        - dps_val: 4096
-          value: Abnormal main brush
-        - dps_val: 524288
-          value: Machine trapped
-        - dps_val: 1048576
-          value: Was picked up at work
-        - dps_val: 33554432
-          value: Recharge failed
     - id: 123
       name: path_comm
       optional: true
@@ -159,6 +145,15 @@ primary_entity:
     - id: 139
       name: room_mode_switch
       type: boolean
+      optional: true
+      mapping:
+        - dps_val: null
+          value_redirect: room_mode_switch_alt
+    - id: 144
+      name: room_mode_switch_alt
+      type: boolean
+      optional: true
+      hidden: true
 secondary_entities:
   - entity: select
     name: Mode
@@ -294,3 +289,35 @@ secondary_entities:
         optional: true
         type: integer
         unit: s
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 122
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 122
+        type: bitfield
+        name: fault_code
+      - id: 122
+        name: description
+        type: bitfield
+        mapping:
+          - dps_val: 0
+            value: ok
+          - dps_val: 2
+            value: Battery low
+          - dps_val: 32
+            value: Drop sensor abnormal
+          - dps_val: 4096
+            value: Abnormal main brush
+          - dps_val: 524288
+            value: Machine trapped
+          - dps_val: 1048576
+            value: Was picked up at work
+          - dps_val: 33554432
+            value: Recharge failed
